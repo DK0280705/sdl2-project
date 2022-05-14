@@ -1,5 +1,7 @@
 #include "pch.h"
 
+#include "game.h"
+#include <chrono>
 #include <iostream>
 
 constexpr int SCREEN_WIDTH  = 1280;
@@ -7,6 +9,13 @@ constexpr int SCREEN_HEIGHT = 720;
 constexpr int MAX_FPS       = 60;
 
 static bool terminating = false;
+
+static double time_f()
+{
+    using namespace std::chrono;
+    auto tp = system_clock::now() + 0ns;
+    return tp.time_since_epoch().count() / 1000000000.0;
+}
 
 static void event_handler()
 {
@@ -30,29 +39,27 @@ int main()
                                               SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT,
                                               SDL_WINDOW_SHOWN)) {
         SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
+
+        // Initialize game class
+        Game& game = Game::init(window, renderer);
+
         // Base color
-        SDL_SetRenderDrawColor(renderer, 0, 0, 0, 255);
+        SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
 
         // Handle FPS
-        constexpr Uint32 ticks_delay = 1000 / MAX_FPS;
-        Uint32 start_ticks;
-        Uint32 ticks_length;
-
-        while (!terminating)  {
-            start_ticks = SDL_GetTicks();
-
-            event_handler();
-            SDL_RenderClear(renderer);
-            // What to render
-            SDL_RenderPresent(renderer);
-            
-            ticks_length = SDL_GetTicks() - start_ticks;
-            if (ticks_delay > ticks_length) SDL_Delay(ticks_delay - ticks_length);
-        }
+        // For example 1000 / 60 will give you 16.666 tick per frame
+        constexpr double ticks_delay = 1000 / MAX_FPS;
+        double start_ticks;
+        double ticks_length;
         
-        SDL_DestroyWindow(window);
-        SDL_DestroyRenderer(renderer);
-        SDL_Quit();
+        while (!terminating) {
+            start_ticks = time_f();
+            event_handler();
+            game.update();
+            ticks_length = time_f() - start_ticks;
+            if (ticks_delay > ticks_length)
+                SDL_Delay(static_cast<Uint32>(ticks_delay - ticks_length));
+        }
     } else std::cerr << "Can't create window: " << SDL_GetError() << "\n";
 
     return 0;
