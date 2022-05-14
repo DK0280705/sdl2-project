@@ -17,9 +17,8 @@ static double time_f()
     return tp.time_since_epoch().count() / 1000000.0;
 }
 
-static void event_handler()
+static void event_handler(SDL_Event& event)
 {
-    SDL_Event event;
     SDL_PollEvent(&event);
     switch (event.type) {
     case SDL_QUIT:
@@ -30,7 +29,7 @@ static void event_handler()
     }
 }
 
-int main()
+int main(int argc, const char** argv)
 {
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
         std::cerr << "Can't init video: " << SDL_GetError() << "\n";
@@ -56,13 +55,14 @@ int main()
         double start_ticks;
         double ticks_length;
         
+        SDL_Event event;
         while (!terminating) {
             start_ticks = time_f();
-            event_handler();
+            event_handler(event);
             game.update();
             ticks_length = time_f() - start_ticks;
             if (ticks_delay > ticks_length)
-                SDL_Delay(std::floor(static_cast<Uint32>(ticks_delay - ticks_length)));
+                SDL_Delay(static_cast<Uint32>(std::floor(ticks_delay - ticks_length)));
         }
     } else std::cerr << "Can't create window: " << SDL_GetError() << "\n";
 

@@ -2,6 +2,7 @@
 build
 Release
 Debug
+sdl2-project*
 
 # Prerequisites
 *.d
