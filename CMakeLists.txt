@@ -9,6 +9,7 @@ add_executable(${PROJECT_NAME} ${SRC_FILES})
 
 target_link_libraries(${PROJECT_NAME}
     SDL2
+    GL
 )
 
 if (CMAKE_BUILD_TYPE STREQUAL "Debug")

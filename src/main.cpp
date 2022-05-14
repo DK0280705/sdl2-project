@@ -35,16 +35,20 @@ int main()
     if (SDL_Init(SDL_INIT_EVERYTHING) < 0)
         std::cerr << "Can't init video: " << SDL_GetError() << "\n";
 
+    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
+    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
+    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
     if (SDL_Window* window = SDL_CreateWindow("Test", SDL_WINDOWPOS_CENTERED,
                                               SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT,
-                                              SDL_WINDOW_SHOWN)) {
+                                              SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL)) {
         SDL_Renderer* renderer = SDL_CreateRenderer(window, -1, 0);
 
         // Initialize game class
         Game& game = Game::init(window, renderer);
-
-        // Base color
-        SDL_SetRenderDrawColor(renderer, 31, 31, 31, 255);
+        game.setup_opengl(SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // Handle FPS
         // For example 1000 / 60 will give you 16.666 tick per frame
