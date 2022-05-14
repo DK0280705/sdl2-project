@@ -21,9 +21,14 @@ void Game::setup_opengl(int width, int height)
     glViewport(0, 0, width, height);
 }
 
+bool reverse = false;
+static float r = 0.0f;
 void Game::update()
 {
-    glClearColor(0.3f, 0.3f, 0.3f, 0.0f);
+    glClearColor(r, 0.3f, -r, 0.0f);
+    r += reverse ? -0.01f : 0.01f;
+    if (r >= 1.0f) reverse = true;
+    else if (r <= 0.0f) reverse = false;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
     SDL_RenderClear(renderer);
     SDL_RenderPresent(renderer);

@@ -14,7 +14,7 @@ static double time_f()
 {
     using namespace std::chrono;
     auto tp = system_clock::now() + 0ns;
-    return tp.time_since_epoch().count() / 1000000000.0;
+    return tp.time_since_epoch().count() / 1000000.0;
 }
 
 static void event_handler()
@@ -51,7 +51,7 @@ int main()
         game.setup_opengl(SCREEN_WIDTH, SCREEN_HEIGHT);
 
         // Handle FPS
-        // For example 1000 / 60 will give you 16.666 tick per frame
+        // For example 1000 / 60 will give you 16.666 milliseconds per frame
         constexpr double ticks_delay = 1000 / MAX_FPS;
         double start_ticks;
         double ticks_length;
@@ -62,7 +62,7 @@ int main()
             game.update();
             ticks_length = time_f() - start_ticks;
             if (ticks_delay > ticks_length)
-                SDL_Delay(static_cast<Uint32>(ticks_delay - ticks_length));
+                SDL_Delay(std::floor(static_cast<Uint32>(ticks_delay - ticks_length)));
         }
     } else std::cerr << "Can't create window: " << SDL_GetError() << "\n";
 
