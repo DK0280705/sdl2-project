@@ -1,0 +1,33 @@
+{
+    "configurations": [
+        {
+            "name": "x86-Debug",
+            "generator": "Visual Studio 16 2019",
+            "configurationType": "Debug",
+            "inheritEnvironments": [ "msvc_x86" ],
+            "buildRoot": "${projectDir}\\Debug",
+            "installRoot": "${projectDir}\\Debug",
+            "cmakeCommandArgs": "",
+            "buildCommandArgs": "",
+            "ctestCommandArgs": "",
+            "intelliSenseMode": "windows-msvc-x86",
+            "variables": [
+                {
+                    "name": "CMAKE_TOOLCHAIN_FILE",
+                    "value": "C:/dev-paths/vcpkg/scripts/buildsystems/vcpkg.cmake",
+                    "type": "FILEPATH"
+                },
+                {
+                    "name": "VCPKG_INSTALLED_DIR",
+                    "value": "C:/dev-paths/vcpkg/installed",
+                    "type": "PATH"
+                },
+                {
+                    "name": "VCPKG_TARGET_TRIPLET",
+                    "value": "x86-windows",
+                    "type": "STRING"
+                }
+            ]
+        }
+    ]
+}
