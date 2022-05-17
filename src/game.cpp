@@ -37,8 +37,8 @@ void Game::update()
 
 Game::~Game()
 {
-    SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_GL_DeleteContext(context);
+    SDL_DestroyWindow(window);
     SDL_Quit();
 }
