@@ -61,6 +61,7 @@ int main(int argc, const char** argv)
             event_handler(event);
             game.update();
             ticks_length = time_f() - start_ticks;
+            // Delay or do something else that does not have anything to do with FPS
             if (ticks_delay > ticks_length)
                 SDL_Delay(static_cast<Uint32>(std::floor(ticks_delay - ticks_length)));
         }
