@@ -40,5 +40,6 @@ Game::~Game()
     SDL_DestroyWindow(window);
     if (renderer) SDL_DestroyRenderer(renderer);
     SDL_GL_DeleteContext(context);
+    SDL_DestroyWindow(window);
     SDL_Quit();
 }
