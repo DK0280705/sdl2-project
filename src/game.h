@@ -2,10 +2,14 @@
 
 class Game
 {
-    Game(SDL_Window* w, SDL_Renderer* r) noexcept;
+    Game(SDL_Window* w) noexcept;
     static Game* _p_instance;
 public:
-    static Game& init(SDL_Window* w, SDL_Renderer* r);
+    static Game& init(SDL_Window* w);
+
+    Game(const Game&) = delete;
+    Game operator=(const Game&) = delete;
+
     ~Game();
 
     struct SDL_Window* window;
@@ -15,5 +19,5 @@ public:
     SDL_GLContext context;
 
     void setup_opengl(int width, int height);
-    void update();
+    void update(float delta);
 };

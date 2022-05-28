@@ -117,7 +117,7 @@ ObjCBlockIndentWidth: 2
 ObjCBreakBeforeNestedBlockParam: true
 ObjCSpaceAfterProperty: false
 ObjCSpaceBeforeProtocolList: true
-PackConstructorInitializers: NextLine
+# PackConstructorInitializers: NextLine
 PenaltyBreakAssignment: 110
 PenaltyBreakBeforeFirstCallParameter: 110
 PenaltyBreakComment: 300
@@ -129,11 +129,11 @@ PenaltyReturnTypeOnItsOwnLine: 100
 PenaltyIndentedWhitespace: 0
 PointerAlignment: Left
 PPIndentWidth:   -1
-QualifierAlignment: Left
+# QualifierAlignment: Left
 ReferenceAlignment: Pointer
 ReflowComments:  true
-RemoveBracesLLVM: true
-SeparateDefinitionBlocks: Always
+# RemoveBracesLLVM: true
+# SeparateDefinitionBlocks: Always # I need clang13 support
 ShortNamespaceLines: 1
 SortIncludes:    CaseSensitive
 SortJavaStaticImport: Before
