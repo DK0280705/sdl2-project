@@ -11,7 +11,11 @@ find_package(OpenGL REQUIRED)
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
 include_directories(${SDL2_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS})
-target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES} SDL2::SDL2-static)
+if (MSVC)
+    target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES} SDL2::SDL2-static)
+else ()
+    target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES})
+endif()
 
 if (NOT MSVC)
     if (CMAKE_BUILD_TYPE STREQUAL "Debug")

@@ -26,7 +26,7 @@ void Game::update(float delta)
     static bool reverse = false;
     static float r = 0.0f;
     glClearColor(r, 0.3f, -r, 0.0f);
-    r += (reverse ? -10.0f : 10.0f) * delta;
+    r += (reverse ? -0.1f : 0.1f) * delta;
     if (r >= 1.0f) reverse = true;
     else if (r <= 0.0f) reverse = false;
     glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
