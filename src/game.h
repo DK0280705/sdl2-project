@@ -1,4 +1,7 @@
 #pragma once
+#include <vector>
+
+class Scene;
 
 class Game
 {
@@ -14,6 +17,8 @@ public:
 
     struct SDL_Window* window;
     struct SDL_Renderer* renderer;
-    
+
+    std::vector<Scene*> scenes;
+
     void update(float delta);
 };

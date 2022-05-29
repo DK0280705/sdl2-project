@@ -34,12 +34,6 @@ int main(int argc, const char** argv)
         return 1;
     }
 
-    SDL_GL_SetAttribute(SDL_GL_RED_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_GREEN_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_BLUE_SIZE, 5);
-    SDL_GL_SetAttribute(SDL_GL_DEPTH_SIZE, 16);
-    SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
-
     if (SDL_Window* window = SDL_CreateWindow("Test", SDL_WINDOWPOS_CENTERED,
                                               SDL_WINDOWPOS_CENTERED, SCREEN_WIDTH, SCREEN_HEIGHT,
                                               SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL)) {
