@@ -6,15 +6,16 @@ file(GLOB SRC_FILES
 )
 
 set(SDL2_USE_STATIC_LIBS ON)
-find_package(SDL2 REQUIRED)
-find_package(OpenGL REQUIRED)
+include(FindPkgConfig)
+pkg_search_module(SDL2 REQUIRED sdl2)
+pkg_search_module(SDL2IMAGE REQUIRED SDL2_image)
 
 add_executable(${PROJECT_NAME} ${SRC_FILES})
-include_directories(${SDL2_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS})
+include_directories(${SDL2_INCLUDE_DIRS} ${SDL2IMAGE_INCLUDE_DIRS} ${OPENGL_INCLUDE_DIRS})
 if (MSVC)
-    target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES} SDL2::SDL2-static)
+    target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES} SDL2::SDL2-static)
 else ()
-    target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${OPENGL_LIBRARIES})
+    target_link_libraries(${PROJECT_NAME} ${SDL2_LIBRARIES} ${SDL2IMAGE_LIBRARIES})
 endif()
 
 if (NOT MSVC)

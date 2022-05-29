@@ -4,6 +4,5 @@
 #include <Windows.h>
 #endif
 #include <SDL2/SDL.h>
+#include <SDL2/SDL_image.h>
 #undef main
-#include <GL/gl.h>
-#include <GL/glu.h>
