@@ -9,6 +9,11 @@ Game::Game(SDL_Window* w, SDL_Renderer* r) noexcept : window(w), renderer(r)
 {
 }
 
+Game& Game::get()
+{
+    return *_p_instance;
+}
+
 Game& Game::init(SDL_Window* w, SDL_Renderer* r)
 {
     static Game game(w, r);
@@ -18,14 +23,14 @@ Game& Game::init(SDL_Window* w, SDL_Renderer* r)
 
 void Game::update(float delta)
 {
-    SDL_SetRenderDrawColor(renderer, 30, 30, 30, 255);
-    for (auto& scene : scenes) scene->update(delta);
     SDL_RenderClear(renderer); 
+    for (auto& scene : scenes) scene->update(delta);
     SDL_RenderPresent(renderer);
 }
 
 Game::~Game()
 {
+    for (auto& scene : scenes) delete scene;
     SDL_DestroyWindow(window);
     SDL_DestroyRenderer(renderer);
     SDL_DestroyWindow(window);

@@ -1,13 +1,15 @@
 #include "pch.h"
 
+#include "game.h"
 #include "scene.h"
 
-Scene::Scene(int x, int y, int h, int w)
+Scene::Scene(Game* game, int x, int y, int w, int h)
+    : game_(game)
 {
     rect.x = x;
     rect.y = y;
-    rect.h = h;
     rect.w = w;
+    rect.h = h;
 }
 
 Scene::~Scene()
