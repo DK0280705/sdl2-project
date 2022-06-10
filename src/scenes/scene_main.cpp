@@ -7,23 +7,23 @@ Scene_main::Scene_main(Game* game, int x, int y, int w, int h)
     : Scene(game, x, y, w, h)
 {
     ground.load_image("assets/ground.png");
-    ground.set_size(640, 120);
+    ground.set_size(SCREEN_WIDTH / 2, 120);
     ground.set_pos(0, SCREEN_HEIGHT - ground.rect.h);
 
     trees.load_image("assets/trees.png");
-    trees.set_size(1280, 720);
+    trees.set_size(SCREEN_WIDTH, 720);
     trees.set_pos(0, 95);
 
     mountains.load_image("assets/mountains.png");
-    mountains.set_size(1280, 768);
+    mountains.set_size(SCREEN_WIDTH, 768);
     mountains.set_pos(0, 0);
     
     clouds.load_image("assets/clouds.png");
-    clouds.set_size(1280, 768);
-    clouds.set_pos(0, 0);
+    clouds.set_size(SCREEN_WIDTH, 768);
+    clouds.set_pos(0, -30);
     
     background.load_image("assets/background_main.png");
-    background.set_size(1280, 720);
+    background.set_size(SCREEN_WIDTH, 720);
     background.set_pos(0, -10);
 }
 
@@ -45,6 +45,11 @@ void Scene_main::update(float delta)
     _move_infinite(game_, mountains, 2, 10.0f, delta);
     _move_infinite(game_, trees, 2, 20.0f, delta);
     _move_infinite(game_, ground, 4, 40.0f, delta);
+}
+
+void Scene_main::input(const SDL_Event& event)
+{
+
 }
 
 Scene_main::~Scene_main()

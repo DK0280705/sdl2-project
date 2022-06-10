@@ -23,6 +23,7 @@ public:
 
     struct SDL_Window* window;
     struct SDL_Renderer* renderer;
+    union SDL_Event event;
 
     std::vector<Scene*> scenes;
 

@@ -24,7 +24,10 @@ Game& Game::init(SDL_Window* w, SDL_Renderer* r)
 void Game::update(float delta)
 {
     SDL_RenderClear(renderer); 
-    for (auto& scene : scenes) scene->update(delta);
+    for (auto& scene : scenes) {
+        scene->input(event);
+        scene->update(delta);
+    }
     SDL_RenderPresent(renderer);
 }
 

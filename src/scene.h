@@ -9,6 +9,7 @@ public:
     SDL_Rect rect;
 
     virtual void update(float delta) = 0;
+    virtual void input(const SDL_Event& event) = 0;
 
 protected:
     class Game* game_;

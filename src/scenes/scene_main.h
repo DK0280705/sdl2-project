@@ -14,4 +14,5 @@ public:
     Texture background;
 
     void update(float delta) override;
+    void input(const union SDL_Event& event) override;
 };

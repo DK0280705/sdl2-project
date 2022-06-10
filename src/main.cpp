@@ -56,13 +56,12 @@ int main(int argc, const char** argv)
             Uint32 last_tick = SDL_GetTicks();
             Uint32 curr_tick = 0;
 
-            SDL_Event event;
             while (!terminating) {
                 frame_count_start = SDL_GetPerformanceCounter();
 
                 curr_tick = SDL_GetTicks();
                 delta_s   = (curr_tick - last_tick) / 1000.0f;
-                event_handler(event);
+                event_handler(game.event);
                 game.update(delta_s);
                 last_tick = curr_tick;
 
